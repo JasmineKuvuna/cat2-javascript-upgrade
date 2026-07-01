@@ -1,3 +1,4 @@
+// Feature 1: Loop-rendered dynamic content
 const products = [
   { name: "Kienyeji Kuku", image: "images/kienyeji.jpg", description: "Our Kienyeji Kuku are raised with care, ensuring the highest quality meat and eggs", price: "Ksh 700 to Ksh 1000" },
   { name: "Broilers Chicken", image: "images/broilers.jpg", description: "The meat from the Broilers Chicken is tender and flavorful, perfect for a variety of dishes", price: "Ksh 550 per kg" },
@@ -19,4 +20,30 @@ products.forEach((product) => {
   `;
   productGrid.appendChild(card);
 });
-    
+   
+// Feature 2: Add and Remove order items
+const addOrderBtn = document.querySelector("#addOrderBtn");
+const orderItemInput = document.querySelector("#orderItemInput");
+const orderList = document.querySelector("#orderList");
+
+addOrderBtn.addEventListener("click", () => {
+  const itemText = orderItemInput.value.trim();
+  if (itemText == "") {
+    return;
+  }
+
+    const li = document.createElement("li");
+    li.textContent = itemText;
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.className = "btn btn-small";
+    removeBtn.addEventListener("click", () => {
+        li.remove();
+    });
+
+    li.appendChild(removeBtn);
+    orderList.appendChild(li);
+
+    orderItemInput.value = "";
+});
