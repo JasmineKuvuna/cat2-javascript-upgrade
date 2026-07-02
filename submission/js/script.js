@@ -28,22 +28,14 @@ const orderList = document.querySelector("#orderList");
 
 addOrderBtn.addEventListener("click", () => {
   const itemText = orderItemInput.value.trim();
+
   if (itemText == "") {
     return;
   }
 
-    const li = document.createElement("li");
-    li.textContent = itemText;
-
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Remove";
-    removeBtn.className = "btn btn-small";
-    removeBtn.addEventListener("click", () => {
-        li.remove();
-    });
-
-    li.appendChild(removeBtn);
+    const li = createOrderItem(itemText);
     orderList.appendChild(li);
+    saveOrderList();
 
     orderItemInput.value = "";
 });
@@ -70,3 +62,35 @@ inquiryForm.addEventListener("submit", (event) => {
 
     inquiryForm.reset();
 });
+
+// Feature 4: Local Storage persistence
+function createOrderItem(itemText) {
+    const li = document.createElement("li");
+    li.textContent = itemText;
+
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "Remove";
+    removeBtn.className = "btn btn-small";
+    removeBtn.addEventListener("click", () => {
+        li.remove();
+        saveOrderList();
+    });
+
+    li.appendChild(removeBtn);
+    return li;
+}
+
+function saveOrderList() {
+    const currentItems = [...orderList.children].map(li => li.firstChild.textContent);
+    localStorage.setItem("madigolloOrderList", JSON.stringify(currentItems));
+}
+
+function loadOrderList() {
+    const saved = JSON.parse(localStorage.getItem("madigolloOrderList")) || [];
+    saved.forEach(itemText => {
+        const li = createOrderItem(itemText);
+        orderList.appendChild(li);
+    });
+}
+
+loadOrderList();
