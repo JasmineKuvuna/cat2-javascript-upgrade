@@ -1,0 +1,16 @@
+Implementation Notes - Madigollo Enterprises
+
+1. Loop-rendered dynamic content:
+Farm offerings product cards are stored in a JS array of onjects and rendered into #productGrid using forEach() and createElement().
+
+2. Dynamix add/remove:
+"Build Your Order" section lets users add items via input + button (createElement/appendChild) and remove them individually via a per-item remove button (remove()).
+
+3. Form validation with feedback:
+Inquiry form in Get in Touch uses event.preventDefault(), reads .value from inputs and writes success/error feedback to #formFeedback via textContent.
+
+4. LocalStorage persistence:
+Order list items are saves to localStorage on add/remove and reloaded on page load, so the list survives a refresh
+
+5. Click-to-reveal banner:
+Clicking the hero banner image toggles a "hidden" class on #bannerCaption via classList.toggle(), revealing a caption about the farm.
