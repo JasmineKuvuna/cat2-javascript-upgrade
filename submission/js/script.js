@@ -94,3 +94,11 @@ function loadOrderList() {
 }
 
 loadOrderList();
+
+// Feature 5: Click-to-reveal banner
+const bannerImg = document.querySelector("#bannerImg");
+const bannerCaption = document.querySelector("#bannerCaption");
+
+bannerImg.addEventListener("click", () => {
+    bannerCaption.classList.toggle("hidden");
+});

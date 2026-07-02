@@ -515,4 +515,18 @@ footer {
     }
 }
 
-    
+.hidden {
+    display: none;
+}
+
+#bannerCaption {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px 20px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 5;
+    border-radius: var(--radius);
+}
