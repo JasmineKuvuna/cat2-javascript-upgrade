@@ -47,3 +47,26 @@ addOrderBtn.addEventListener("click", () => {
 
     orderItemInput.value = "";
 });
+
+// Feature 3: Form validation with feedback
+const inquiryForm = document.querySelector("#inquiryForm");
+const formFeedback = document.querySelector("#formFeedback");
+
+inquiryForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = document.querySelector("#nameInput").value.trim();
+    const product = document.querySelector("#productInput").value.trim();
+    const quantity = document.querySelector("#quantityInput").value.trim();
+
+    if (name === "" || product === "" || quantity === "") {
+        formFeedback.textContent = "Please fill in all fields before submitting.";
+        formFeedback.style.color = "red";
+        return;
+    }
+
+    formFeedback.textContent = `Thanks ${name}, your inquiry for ${quantity} of ${product} has been noted. We'll reach you via Whatsapp or phone.`;
+    formFeedback.style.color = "green";
+
+    inquiryForm.reset();
+});
